@@ -101,9 +101,9 @@ def get_ohlcv(ticker="KRW-BTC", interval= "day", count=200):
         return None
 
 
-def get_daily_ohlcv_from_base(ticker="KRW-BTC", base=0):
+def get_daily_ohlcv_from_base(ticker="KRW-BTC", base=0, count=200):
     try:
-        df = get_ohlcv(ticker, interval="minute60")
+        df = get_ohlcv(ticker, interval="minute60", count=count)
         df = df.resample('24H', base=base).agg({'open': 'first', 'high': 'max', 'low': 'min', 'close': 'last', 'volume':'sum'})
         return df
     except Exception as x:
